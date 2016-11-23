@@ -16,20 +16,6 @@ Route::get('/', function () {
 });
 
 Route::get('users', ['uses' => 'UsersController@index']);
+Route::get('users/create', ['uses' => 'UsersController@create']);
+Route::post('users', ['uses' => 'UsersController@store']);
 
-// Route::get('users', function()
-// {
-//     $users = [
-//         '0' => [
-//             'first_name' => 'Alvie',
-//             'last_name' => 'Amar',
-//             'location' => 'Cebu',
-//         ],
-//         '1' => [
-//             'first_name' => 'Aisle',
-//             'last_name' => 'Bee',
-//             'location' => 'Manila',
-//         ],
-//     ];
-//     return $users;
-// });
