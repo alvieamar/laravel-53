@@ -20,6 +20,6 @@ class UsersController extends Controller
                 'location' => 'Manila',
             ],
         ];
-        return $users;
+        return view('admin.users.index', compact('users'));
    }
 }
