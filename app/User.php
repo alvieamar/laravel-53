@@ -39,4 +39,17 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = bcrypt($value);
     }
+
+    /**
+     * This is how Accessors work
+     */
+    public function getNameAttribute($value)
+    {
+        return strtoupper($value);
+    }
+
+    public function getEmailAttribute($value)
+    {
+        return strtok($value, '@');
+    }
 }
