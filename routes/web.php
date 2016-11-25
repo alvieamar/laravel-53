@@ -12,11 +12,11 @@
 */
 
 Route::get('/', 'PagesController@index');
+Route::get('blade', 'PagesController@blade');
 Route::get('profile', 'PagesController@profile');
 Route::get('settings', 'PagesController@settings');
-Route::get('blade', 'PagesController@blade');
 
-Route::get('users', ['uses' => 'UsersController@index']);
+Route::get('users', ['uses' => 'UsersController@index'])->middleware('authenticated');
 Route::get('users/create', ['uses' => 'UsersController@create']);
 Route::post('users', ['uses' => 'UsersController@store']);
 
