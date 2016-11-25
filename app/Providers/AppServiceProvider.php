@@ -6,6 +6,7 @@ use View;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,13 +17,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $age = Carbon::createFromDate(1995, 7, 2)->age;
-        View::share('age', $age);
-        View::share('myname', 'alvie');
+        Blade::directive('age', function($expression){
+            $data = json_decode($expression);
 
-        // View::share('auth', Auth::user());
-        View::composer('*', function($view) {
-            $view->with('auth', Auth::user());
+            $year = $data['0'];
+            $month = $data['1'];
+            $day = $data['2'];
+
+            $age = Carbon::createFromDate($year, $month, $day)->age;
+
+            return "<?php echo $age; ?>";
         });
     }
 
@@ -33,6 +37,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $age = Carbon::createFromDate(1995, 7, 2)->age;
+        View::share('age', $age);
+        View::share('myname', 'alvie');
+
+        // View::share('auth', Auth::user());
+        View::composer('*', function($view) {
+            $view->with('auth', Auth::user());
+        });
     }
 }

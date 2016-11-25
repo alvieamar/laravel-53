@@ -8,7 +8,9 @@
                 <div class="panel-heading">Profile</div>
 
                 <div class="panel-body">
-                    {{ $married }}
+                    <p>Your age is @age([1995, 7, 3])</p>
+                    <p>Your age is {{ Carbon\Carbon::createFromDate(1992, 9, 7)->age }}</p>
+                    <p>{{ $married }}</p>
                 </div>
             </div>
         </div>
